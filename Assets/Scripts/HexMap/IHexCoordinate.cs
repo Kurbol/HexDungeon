@@ -6,9 +6,5 @@
 
     int Z { get; }
 
-    void AddX(int value);
-
-    void AddY(int value);
-
-    void AddZ(int value);
+    void Move(HexDirection direction, int distance);
 }

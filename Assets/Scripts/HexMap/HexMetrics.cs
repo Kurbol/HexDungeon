@@ -5,27 +5,41 @@ using UnityEngine;
 [Serializable]
 public struct HexMetrics
 {
-    /* Orientation: ⬡ */
+    public HexOrientation Orientation { get; private set; }
 
-    public float HexWidth { get; private set; }
     public float InnerRadius { get; private set; }
     public float OuterRadius { get; private set; }
     public ReadOnlyCollection<Vector3> Corners { get; private set; }
 
-    public HexMetrics(float hexWidth)
+    public HexMetrics(float innerRadius, HexOrientation orientation)
     {
-        HexWidth = hexWidth;
-        InnerRadius = HexWidth * 0.5f;
+        Orientation = orientation;
+        InnerRadius = innerRadius;
         OuterRadius = InnerRadius * 1.15470053838f; /* 2/sqrt(3) */
 
-        Corners = new ReadOnlyCollection<Vector3>(new[]
+        if (Orientation == HexOrientation.FlatUp)
         {
-            new Vector3(0f, 0f, OuterRadius),
-            new Vector3(InnerRadius, 0f, 0.5f * OuterRadius),
-            new Vector3(InnerRadius, 0f, -0.5f * OuterRadius),
-            new Vector3(0f, 0f, -OuterRadius),
-            new Vector3(-InnerRadius, 0f, -0.5f * OuterRadius),
-            new Vector3(-InnerRadius, 0f, 0.5f * OuterRadius),
-        });
+            Corners = new ReadOnlyCollection<Vector3>(new[]
+            {
+                new Vector3(0.5f * OuterRadius, 0f, InnerRadius),
+                new Vector3(OuterRadius, 0f, 0f),
+                new Vector3(0.5f * OuterRadius, 0f, -InnerRadius),
+                new Vector3(-0.5f * OuterRadius, 0f, -InnerRadius),
+                new Vector3(-OuterRadius, 0f, -0f),
+                new Vector3(-0.5f * OuterRadius, 0f, InnerRadius),
+            });
+        }
+        else
+        {
+            Corners = new ReadOnlyCollection<Vector3>(new[]
+            {
+                new Vector3(InnerRadius, 0f, -0.5f * OuterRadius),
+                new Vector3(0f, 0f, -OuterRadius),
+                new Vector3(-InnerRadius, 0f, -0.5f * OuterRadius),
+                new Vector3(-InnerRadius, 0f, 0.5f * OuterRadius),
+                new Vector3(0f, 0f, OuterRadius),
+                new Vector3(InnerRadius, 0f, 0.5f * OuterRadius),
+            });
+        }
     }
 }

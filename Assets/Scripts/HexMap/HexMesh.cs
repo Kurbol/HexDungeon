@@ -9,31 +9,38 @@ public class HexMesh : MonoBehaviour
 
     [SerializeField]
     private MeshFilter meshFilter;
+    public MeshFilter MeshFilter
+    {
+        get
+        {
+            meshFilter = meshFilter ?? GetComponent<MeshFilter>();
+            return meshFilter;
+        }
+    }
 
     [SerializeField]
     private MeshCollider meshCollider;
+    public MeshCollider MeshCollider
+    {
+        get
+        {
+            meshCollider = meshCollider ?? GetComponent<MeshCollider>();
+            return meshCollider;
+        }
+    }
 
     private void Start()
     {
-        if (meshFilter == null)
-        {
-            meshFilter = GetComponent<MeshFilter>();
-        }
-
-        if (meshCollider == null)
-        {
-            meshCollider = GetComponent<MeshCollider>();
-        }
-
-        RebuildMesh();
+        if (MeshFilter.mesh == null || MeshCollider.sharedMesh == null)
+            RebuildMesh();
     }
 
     public void RebuildMesh()
     {
         Mesh mesh = BuildMesh(hexRoom);
 
-        meshFilter.mesh = mesh;
-        meshCollider.sharedMesh = mesh;
+        MeshFilter.mesh = mesh;
+        MeshCollider.sharedMesh = mesh;
     }
 
     private static Mesh BuildMesh(HexRoom hexRoom)

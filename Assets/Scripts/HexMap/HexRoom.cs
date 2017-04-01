@@ -1,4 +1,4 @@
-﻿using System;
+﻿using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
 
@@ -11,17 +11,6 @@ public class HexRoom : MonoBehaviour
 
     [SerializeField]
     private Color defaultColor = Color.white;
-
-    [SerializeField]
-    private Color touchedColor = Color.magenta;
-
-    [SerializeField]
-    private int seed;
-    public int Seed
-    {
-        get { return seed; }
-        set { seed = value; }
-    }
 
     [SerializeField]
     [Range(1, 10)]
@@ -42,6 +31,14 @@ public class HexRoom : MonoBehaviour
     }
 
     [SerializeField]
+    private HexOrientation hexOrientation = HexOrientation.FlatUp;
+    public HexOrientation HexOrientation
+    {
+        get { return hexOrientation; }
+        set { hexOrientation = value; }
+    }
+
+    [SerializeField]
     private UnityEvent cellClicked;
     public UnityEvent CellClicked
     {
@@ -49,15 +46,33 @@ public class HexRoom : MonoBehaviour
         set { cellClicked = value; }
     }
 
-    public HexMetrics HexMetrics { get; private set; }
+    private HexMetrics hexMetrics;
+    public HexMetrics HexMetrics
+    {
+        get
+        {
+            if (hexMetrics.InnerRadius <= 0)
+            {
+                float innerRadius = 0.5f * Scale;
+                hexMetrics = new HexMetrics(innerRadius, HexOrientation);
+            }
 
-    public HexMap<HexTile> HexMap { get; private set; }
+            return hexMetrics;
+        }
+    }
+
+    private HexMap<HexTile> hexMap;
+    public HexMap<HexTile> HexMap
+    {
+        get
+        {
+            hexMap = hexMap ?? new HexMap<HexTile>(Size);
+            return hexMap;
+        }
+    }
 
     private void Awake()
     {
-        HexMetrics = new HexMetrics(1);
-        HexMap = new HexMap<HexTile>(Size);
-
         foreach (IHexCoordinate hexCoordinate in HexMap.Coordinates)
         {
             HexMap[hexCoordinate] = new HexTile
@@ -70,35 +85,25 @@ public class HexRoom : MonoBehaviour
     private void OnDrawGizmos()
     {
         if (!showGizmos)
+        {
             return;
-    }
-
-    private void Update()
-    {
-        if (Input.GetMouseButton(0))
-        {
-            HandleInput();
         }
     }
 
-    private void HandleInput()
+    public void ColorCell(Vector3 worldPosition, Color color)
     {
-        Ray inputRay = Camera.main.ScreenPointToRay(Input.mousePosition);
-        RaycastHit hit;
-        if (Physics.Raycast(inputRay, out hit))
-        {
-            TouchCell(hit.point);
-        }
-    }
-
-    private void TouchCell(Vector3 position)
-    {
-        Vector3 localPosition = transform.InverseTransformPoint(position);
+        Vector3 localPosition = transform.InverseTransformPoint(worldPosition);
         IHexCoordinate coordinate = localPosition.ToHexCoordinate(HexMetrics);
-        HexMap[coordinate].Color = touchedColor;
+
+        if (!HexMap.ContainsCoordinate(coordinate))
+            return;
+
+        HexMap[coordinate].Color = color;
         Debug.Log("touched at " + coordinate.ToString());
 
         if (CellClicked != null)
+        {
             CellClicked.Invoke();
+        }
     }
 }

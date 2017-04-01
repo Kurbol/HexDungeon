@@ -1,5 +1,7 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 
+[Serializable]
 public struct HexCell<T>
 {
     public IHexCoordinate Coordinate { get; private set; }
