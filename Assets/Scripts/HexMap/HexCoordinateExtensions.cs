@@ -16,17 +16,17 @@ public static class HexCoordinateExtensions
         if (scale <= 0)
             return localPosition;
 
-        if (hexMetrics.Orientation == HexOrientation.FlatUp)
-        {
-            localPosition.x = 1.5f * hexMetrics.OuterRadius * hexCoordinate.X;
-            localPosition.y = 0f;
-            localPosition.z = hexMetrics.InnerRadius * (hexCoordinate.Z - hexCoordinate.Y);
-        }
-        else
+        if (hexMetrics.Orientation == HexOrientation.PointUp)
         {
             localPosition.x = hexMetrics.InnerRadius * (hexCoordinate.X - hexCoordinate.Y);
             localPosition.y = 0f;
             localPosition.z = 1.5f * hexMetrics.OuterRadius * hexCoordinate.Z;
+        }
+        else
+        {
+            localPosition.x = 1.5f * hexMetrics.OuterRadius * hexCoordinate.X;
+            localPosition.y = 0f;
+            localPosition.z = hexMetrics.InnerRadius * (hexCoordinate.Z - hexCoordinate.Y);
         }
 
         return localPosition * scale;
@@ -46,7 +46,7 @@ public static class HexCoordinateExtensions
         float fY;
         float fX;
 
-        if (hexMetrics.Orientation == HexOrientation.FlatUp)
+        if (hexMetrics.Orientation == HexOrientation.PointUp)
         {
             fZ = position.z / (1.5f * hexMetrics.OuterRadius * scale);
             fY = -0.5f * (position.x / (hexMetrics.InnerRadius * scale) + fZ);
@@ -54,8 +54,8 @@ public static class HexCoordinateExtensions
         }
         else
         {
-            fX = (position.x / scale) * 1.5f * hexMetrics.OuterRadius;
-            fY = -0.5f * (position.x / (hexMetrics.InnerRadius * scale) + fX);
+            fX = position.x / (1.5f * hexMetrics.OuterRadius * scale);
+            fY = -0.5f * (position.z / (hexMetrics.InnerRadius * scale) + fX);
             fZ = -fX - fY;
         }
 

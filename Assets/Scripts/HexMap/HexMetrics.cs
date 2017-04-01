@@ -17,28 +17,28 @@ public struct HexMetrics
         InnerRadius = innerRadius;
         OuterRadius = InnerRadius * 1.15470053838f; /* 2/sqrt(3) */
 
-        if (Orientation == HexOrientation.FlatUp)
+        if (Orientation == HexOrientation.PointUp)
         {
             Corners = new ReadOnlyCollection<Vector3>(new[]
             {
-                new Vector3(0.5f * OuterRadius, 0f, InnerRadius),
-                new Vector3(OuterRadius, 0f, 0f),
-                new Vector3(0.5f * OuterRadius, 0f, -InnerRadius),
-                new Vector3(-0.5f * OuterRadius, 0f, -InnerRadius),
-                new Vector3(-OuterRadius, 0f, -0f),
-                new Vector3(-0.5f * OuterRadius, 0f, InnerRadius),
+                new Vector3(InnerRadius, 0f, 0.5f * OuterRadius),
+                new Vector3(InnerRadius, 0f, -0.5f * OuterRadius),
+                new Vector3(0f, 0f, -OuterRadius),
+                new Vector3(-InnerRadius, 0f, -0.5f * OuterRadius),
+                new Vector3(-InnerRadius, 0f, 0.5f * OuterRadius),
+                new Vector3(0f, 0f, OuterRadius),
             });
         }
         else
         {
             Corners = new ReadOnlyCollection<Vector3>(new[]
             {
-                new Vector3(InnerRadius, 0f, -0.5f * OuterRadius),
-                new Vector3(0f, 0f, -OuterRadius),
-                new Vector3(-InnerRadius, 0f, -0.5f * OuterRadius),
-                new Vector3(-InnerRadius, 0f, 0.5f * OuterRadius),
-                new Vector3(0f, 0f, OuterRadius),
-                new Vector3(InnerRadius, 0f, 0.5f * OuterRadius),
+                new Vector3(OuterRadius, 0f, 0f),
+                new Vector3(0.5f * OuterRadius, 0f, -InnerRadius),
+                new Vector3(-0.5f * OuterRadius, 0f, -InnerRadius),
+                new Vector3(-OuterRadius, 0f, 0f),
+                new Vector3(-0.5f * OuterRadius, 0f, InnerRadius),
+                new Vector3(0.5f * OuterRadius, 0f, InnerRadius),
             });
         }
     }
