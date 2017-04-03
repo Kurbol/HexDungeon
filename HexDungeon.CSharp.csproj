@@ -76,18 +76,18 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Assets\Scripts\General\MouseButton.cs" />
+    <Compile Include="Assets\Scripts\HexMap\Components\HexDungeon.cs" />
+    <Compile Include="Assets\Scripts\HexMap\Components\HexMapEditor.cs" />
+    <Compile Include="Assets\Scripts\HexMap\Components\HexMapLabels.cs" />
+    <Compile Include="Assets\Scripts\HexMap\Components\HexMesh.cs" />
+    <Compile Include="Assets\Scripts\HexMap\Components\HexRoom.cs" />
     <Compile Include="Assets\Scripts\HexMap\HexCell.cs" />
     <Compile Include="Assets\Scripts\HexMap\HexCoordinate.cs" />
     <Compile Include="Assets\Scripts\HexMap\HexCoordinateExtensions.cs" />
     <Compile Include="Assets\Scripts\HexMap\HexDirection.cs" />
-    <Compile Include="Assets\Scripts\HexMap\HexDungeon.cs" />
     <Compile Include="Assets\Scripts\HexMap\HexMap.cs" />
-    <Compile Include="Assets\Scripts\HexMap\HexMapEditor.cs" />
-    <Compile Include="Assets\Scripts\HexMap\HexMapLabels.cs" />
-    <Compile Include="Assets\Scripts\HexMap\HexMesh.cs" />
     <Compile Include="Assets\Scripts\HexMap\HexMetrics.cs" />
     <Compile Include="Assets\Scripts\HexMap\HexOrientation.cs" />
-    <Compile Include="Assets\Scripts\HexMap\HexRoom.cs" />
     <Compile Include="Assets\Scripts\HexMap\HexTile.cs" />
     <Compile Include="Assets\Scripts\HexMap\IHexCoordinate.cs" />
     <Compile Include="Assets\Scripts\Mesh\MeshBuilder.cs" />

@@ -107,33 +107,52 @@ public static class HexCoordinateExtensions
         }
     }
 
-    public static void MoveNE(this IHexCoordinate hexCoordinate, int distance)
+    public static IHexCoordinate Move(this IHexCoordinate hexCoordinate, HexDirection direction)
     {
-        hexCoordinate.Move(HexDirection.NE, distance);
+        return hexCoordinate.Move(direction, 1);
     }
 
-    public static void MoveE(this IHexCoordinate hexCoordinate, int distance)
+    public static IHexCoordinate Move(this IHexCoordinate hexCoordinate, HexDirection direction, int distance)
     {
-        hexCoordinate.Move(HexDirection.E, distance);
-    }
+        //       _One_
+        //   Six/     \Two
+        //     /       \
+        // Five\       /Three
+        //      \_____/
+        //       Four
 
-    public static void MoveSE(this IHexCoordinate hexCoordinate, int distance)
-    {
-        hexCoordinate.Move(HexDirection.SE, distance);
-    }
+        int x = hexCoordinate.X;
+        int y = hexCoordinate.Y;
 
-    public static void MoveSW(this IHexCoordinate hexCoordinate, int distance)
-    {
-        hexCoordinate.Move(HexDirection.SW, distance);
-    }
+        switch (direction)
+        {
+            case HexDirection.One:
+                y -= distance;
+                break;
 
-    public static void MoveW(this IHexCoordinate hexCoordinate, int distance)
-    {
-        hexCoordinate.Move(HexDirection.W, distance);
-    }
+            case HexDirection.Two:
+                x += distance;
+                y -= distance;
+                break;
 
-    public static void MoveNW(this IHexCoordinate hexCoordinate, int distance)
-    {
-        hexCoordinate.Move(HexDirection.NW, distance);
+            case HexDirection.Three:
+                x += distance;
+                break;
+
+            case HexDirection.Four:
+                y += distance;
+                break;
+
+            case HexDirection.Five:
+                x -= distance;
+                y += distance;
+                break;
+
+            case HexDirection.Six:
+                x -= distance;
+                break;
+        }
+
+        return new HexCoordinate(x, y);
     }
 }

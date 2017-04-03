@@ -20,36 +20,4 @@ public struct HexCoordinate : IHexCoordinate
     {
         return "(" + X.ToString() + ", " + Y.ToString() + ", " + Z.ToString() + ")";
     }
-
-    public void Move(HexDirection direction, int distance)
-    {
-        switch (direction)
-        {
-            case HexDirection.NE:
-                Y -= distance;
-                break;
-
-            case HexDirection.E:
-                X += distance;
-                Y -= distance;
-                break;
-
-            case HexDirection.SE:
-                X += distance;
-                break;
-
-            case HexDirection.SW:
-                Y += distance;
-                break;
-
-            case HexDirection.W:
-                X -= distance;
-                Y += distance;
-                break;
-
-            case HexDirection.NW:
-                X -= distance;
-                break;
-        }
-    }
 }

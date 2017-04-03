@@ -3,10 +3,11 @@
 [Serializable]
 public enum HexDirection
 {
-    NE,
-    E,
-    SE,
-    SW,
-    W,
-    NW,
+    // Orientation: ⬡    ⬣
+    One,   //...... NE    N
+    Two,   //...... E     NE
+    Three, //...... SE    SE
+    Four,  //...... SW    S
+    Five,  //...... W     SW
+    Six,   //...... NW    NW
 }
