@@ -14,7 +14,7 @@ public class HexMapLabels : MonoBehaviour
 
     private void Start()
     {
-        foreach (IHexCoordinate hexCoordinate in hexRoom.HexMap.Coordinates)
+        foreach (IHexCoordinate hexCoordinate in hexRoom.HexMap.Keys)
         {
             CreateHexLabel(hexCoordinate);
         }

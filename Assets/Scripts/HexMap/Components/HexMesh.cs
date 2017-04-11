@@ -1,4 +1,5 @@
-﻿using System.Collections.ObjectModel;
+﻿using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using UnityEngine;
 
 [RequireComponent(typeof(MeshCollider), typeof(MeshFilter), typeof(MeshRenderer))]
@@ -47,12 +48,12 @@ public class HexMesh : MonoBehaviour
     {
         MeshBuilder meshBuilder = new MeshBuilder("Hex Mesh");
 
-        foreach (HexCell<HexTile> hexCell in hexRoom.HexMap)
+        foreach (KeyValuePair<IHexCoordinate, HexTile> hexCell in hexRoom.HexMap)
         {
-            foreach (ReadOnlyCollection<Vector3> triangle in hexCell.Coordinate.Triangulate(hexRoom.HexMetrics))
+            foreach (ReadOnlyCollection<Vector3> triangle in hexCell.Key.Triangulate(hexRoom.HexMetrics))
             {
-                if (hexCell.Tile != null)
-                    meshBuilder.AddTriangle(triangle[0], triangle[1], triangle[2], hexCell.Tile.Color);
+                if (hexCell.Value != null)
+                    meshBuilder.AddTriangle(triangle[0], triangle[1], triangle[2], hexCell.Value.Color);
             }
         }
 

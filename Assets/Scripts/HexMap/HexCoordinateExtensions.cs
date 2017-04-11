@@ -121,6 +121,13 @@ public static class HexCoordinateExtensions
         //      \_____/
         //       Four
 
+        //    Six / \ One
+        //      /     \
+        // Five|       |Two
+        //     |       |
+        // Four \     / Three
+        //        \ /
+
         int x = hexCoordinate.X;
         int y = hexCoordinate.Y;
 

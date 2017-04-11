@@ -1,6 +1,8 @@
-﻿using UnityEngine;
+﻿using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
 
-public class HexDungeon : MonoBehaviour
+public class HexDungeon : MonoBehaviour, IHexGrid<IHexGrid<HexTile>>
 {
     public delegate void ClickAction();
 
@@ -13,11 +15,6 @@ public class HexDungeon : MonoBehaviour
     [SerializeField]
     [Range(1, 10)]
     private int size = 6;
-    public int Size
-    {
-        get { return size; }
-        set { size = value; }
-    }
 
     [SerializeField]
     [Range(.1F, 2F)]
@@ -29,21 +26,22 @@ public class HexDungeon : MonoBehaviour
     }
 
     [SerializeField]
-    private HexOrientation hexOrientation = HexOrientation.PointUp;
+    private HexOrientation hexOrientation;
     public HexOrientation HexOrientation
     {
         get { return hexOrientation; }
         set { hexOrientation = value; }
     }
 
+    [SerializeField]
     private HexMetrics hexMetrics;
     public HexMetrics HexMetrics
     {
         get
         {
-            if (hexMetrics.InnerRadius <= 0)
+            if (hexMetrics.InnerRadius == 0)
             {
-                float innerRadius = 1.5f * hexRoomPrefab.Size * hexRoomPrefab.HexMetrics.OuterRadius * Scale;
+                float innerRadius = 1.5f * hexRoomPrefab.Size * hexRoomPrefab.HexMetrics.OuterRadius * hexRoomPrefab.Scale * Scale;
                 hexMetrics = new HexMetrics(innerRadius, HexOrientation);
             }
 
@@ -51,21 +49,30 @@ public class HexDungeon : MonoBehaviour
         }
     }
 
-    private HexMap<HexRoom> hexMap;
-    public HexMap<HexRoom> HexMap
+    private Dictionary<IHexCoordinate, IHexGrid<HexTile>> hexMap;
+    public Dictionary<IHexCoordinate, IHexGrid<HexTile>> HexMap
     {
         get
         {
-            hexMap = hexMap ?? new HexMap<HexRoom>(Size);
+            if (hexMap == null)
+                hexMap = new Dictionary<IHexCoordinate, IHexGrid<HexTile>>();
+
             return hexMap;
         }
     }
 
     private void Awake()
     {
-        foreach (IHexCoordinate hexCoordinate in HexMap.Coordinates)
+        StartCoroutine(BuildMapCells());
+    }
+
+    private IEnumerator BuildMapCells()
+    {
+        foreach (IHexCoordinate hexCoordinate in HexMapper.HexMap(size))
         {
             HexMap[hexCoordinate] = CreateHexRoom(hexCoordinate);
+
+            yield return null;
         }
     }
 

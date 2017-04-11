@@ -2,7 +2,7 @@
 using UnityEngine;
 using UnityEngine.Events;
 
-public class HexRoom : MonoBehaviour
+public class HexRoom : MonoBehaviour, IHexGrid<HexTile>
 {
     public delegate void ClickAction();
 
@@ -31,7 +31,7 @@ public class HexRoom : MonoBehaviour
     }
 
     [SerializeField]
-    private HexOrientation hexOrientation = HexOrientation.FlatUp;
+    private HexOrientation hexOrientation;
     public HexOrientation HexOrientation
     {
         get { return hexOrientation; }
@@ -46,6 +46,7 @@ public class HexRoom : MonoBehaviour
         set { cellClicked = value; }
     }
 
+    [SerializeField]
     private HexMetrics hexMetrics;
     public HexMetrics HexMetrics
     {
@@ -61,19 +62,27 @@ public class HexRoom : MonoBehaviour
         }
     }
 
-    private HexMap<HexTile> hexMap;
-    public HexMap<HexTile> HexMap
+    [SerializeField]
+    private Dictionary<IHexCoordinate, HexTile> hexMap;
+    public Dictionary<IHexCoordinate, HexTile> HexMap
     {
         get
         {
-            hexMap = hexMap ?? new HexMap<HexTile>(Size);
+            if (hexMap == null)
+                hexMap = new Dictionary<IHexCoordinate, HexTile>();
+
             return hexMap;
         }
     }
 
     private void Awake()
     {
-        foreach (IHexCoordinate hexCoordinate in HexMap.Coordinates)
+        BuildMapCells();
+    }
+
+    private void BuildMapCells()
+    {
+        foreach (IHexCoordinate hexCoordinate in HexMapper.HexMap(Size))
         {
             HexMap[hexCoordinate] = new HexTile
             {
@@ -95,7 +104,7 @@ public class HexRoom : MonoBehaviour
         Vector3 localPosition = transform.InverseTransformPoint(worldPosition);
         IHexCoordinate coordinate = localPosition.ToHexCoordinate(HexMetrics);
 
-        if (!HexMap.ContainsCoordinate(coordinate))
+        if (!HexMap.ContainsKey(coordinate))
             return;
 
         HexMap[coordinate].Color = color;

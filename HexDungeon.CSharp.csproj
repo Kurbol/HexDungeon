@@ -85,11 +85,12 @@
     <Compile Include="Assets\Scripts\HexMap\HexCoordinate.cs" />
     <Compile Include="Assets\Scripts\HexMap\HexCoordinateExtensions.cs" />
     <Compile Include="Assets\Scripts\HexMap\HexDirection.cs" />
-    <Compile Include="Assets\Scripts\HexMap\HexMap.cs" />
+    <Compile Include="Assets\Scripts\HexMap\HexMapper.cs" />
     <Compile Include="Assets\Scripts\HexMap\HexMetrics.cs" />
     <Compile Include="Assets\Scripts\HexMap\HexOrientation.cs" />
     <Compile Include="Assets\Scripts\HexMap\HexTile.cs" />
     <Compile Include="Assets\Scripts\HexMap\IHexCoordinate.cs" />
+    <Compile Include="Assets\Scripts\HexMap\IHexGrid.cs" />
     <Compile Include="Assets\Scripts\Mesh\MeshBuilder.cs" />
   </ItemGroup>
   <ItemGroup>
