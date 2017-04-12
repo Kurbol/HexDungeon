@@ -58,7 +58,16 @@ public static class HexMapper
         return 6 * (size - 1);
     }
 
-    public static int MapSize(this IEnumerable<IHexCoordinate> hexMap)
+    public static void Populate<T>(this Dictionary<IHexCoordinate, T> hexMap, int size, Func<T> tileGenerator)
+    {
+        foreach (IHexCoordinate hexCoordinate in HexMap(size))
+        {
+            hexMap[hexCoordinate] = tileGenerator();
+        }
+    }
+
+    [Obsolete]
+    private static int MapSize(this IEnumerable<IHexCoordinate> hexMap)
     {
         if (hexMap == null || !hexMap.Any())
             return 0;

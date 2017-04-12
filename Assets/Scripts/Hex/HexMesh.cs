@@ -1,7 +1,9 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using UnityEngine;
 
+[Serializable]
 [RequireComponent(typeof(MeshCollider), typeof(MeshFilter), typeof(MeshRenderer))]
 public class HexMesh : MonoBehaviour
 {

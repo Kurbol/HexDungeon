@@ -2,6 +2,8 @@
 
 public interface IHexGrid<T>
 {
+    int Size { get; }
+
     float Scale { get; }
 
     HexMetrics HexMetrics { get; }

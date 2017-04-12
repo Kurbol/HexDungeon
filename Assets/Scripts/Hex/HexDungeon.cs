@@ -1,7 +1,9 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+[Serializable]
 public class HexDungeon : MonoBehaviour, IHexGrid<IHexGrid<HexTile>>
 {
     public delegate void ClickAction();
@@ -15,6 +17,11 @@ public class HexDungeon : MonoBehaviour, IHexGrid<IHexGrid<HexTile>>
     [SerializeField]
     [Range(1, 10)]
     private int size = 6;
+    public int Size
+    {
+        get { return size; }
+        private set { size = value; }
+    }
 
     [SerializeField]
     [Range(.1F, 2F)]
@@ -22,7 +29,7 @@ public class HexDungeon : MonoBehaviour, IHexGrid<IHexGrid<HexTile>>
     public float Scale
     {
         get { return scale; }
-        set { scale = value; }
+        private set { scale = value; }
     }
 
     [SerializeField]
@@ -30,7 +37,7 @@ public class HexDungeon : MonoBehaviour, IHexGrid<IHexGrid<HexTile>>
     public HexOrientation HexOrientation
     {
         get { return hexOrientation; }
-        set { hexOrientation = value; }
+        private set { hexOrientation = value; }
     }
 
     [SerializeField]
@@ -41,7 +48,7 @@ public class HexDungeon : MonoBehaviour, IHexGrid<IHexGrid<HexTile>>
         {
             if (hexMetrics.InnerRadius == 0)
             {
-                float innerRadius = 1.5f * hexRoomPrefab.Size * hexRoomPrefab.HexMetrics.OuterRadius * hexRoomPrefab.Scale * Scale;
+                float innerRadius = hexRoomPrefab.InnerRadius() * Scale;
                 hexMetrics = new HexMetrics(innerRadius, HexOrientation);
             }
 
@@ -55,7 +62,9 @@ public class HexDungeon : MonoBehaviour, IHexGrid<IHexGrid<HexTile>>
         get
         {
             if (hexMap == null)
+            {
                 hexMap = new Dictionary<IHexCoordinate, IHexGrid<HexTile>>();
+            }
 
             return hexMap;
         }

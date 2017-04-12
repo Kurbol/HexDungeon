@@ -76,21 +76,21 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Assets\Scripts\General\MouseButton.cs" />
-    <Compile Include="Assets\Scripts\HexMap\Components\HexDungeon.cs" />
-    <Compile Include="Assets\Scripts\HexMap\Components\HexMapEditor.cs" />
-    <Compile Include="Assets\Scripts\HexMap\Components\HexMapLabels.cs" />
-    <Compile Include="Assets\Scripts\HexMap\Components\HexMesh.cs" />
-    <Compile Include="Assets\Scripts\HexMap\Components\HexRoom.cs" />
-    <Compile Include="Assets\Scripts\HexMap\HexCell.cs" />
-    <Compile Include="Assets\Scripts\HexMap\HexCoordinate.cs" />
-    <Compile Include="Assets\Scripts\HexMap\HexCoordinateExtensions.cs" />
-    <Compile Include="Assets\Scripts\HexMap\HexDirection.cs" />
-    <Compile Include="Assets\Scripts\HexMap\HexMapper.cs" />
-    <Compile Include="Assets\Scripts\HexMap\HexMetrics.cs" />
-    <Compile Include="Assets\Scripts\HexMap\HexOrientation.cs" />
-    <Compile Include="Assets\Scripts\HexMap\HexTile.cs" />
-    <Compile Include="Assets\Scripts\HexMap\IHexCoordinate.cs" />
-    <Compile Include="Assets\Scripts\HexMap\IHexGrid.cs" />
+    <Compile Include="Assets\Scripts\Hex\HexCoordinate.cs" />
+    <Compile Include="Assets\Scripts\Hex\HexCoordinateExtensions.cs" />
+    <Compile Include="Assets\Scripts\Hex\HexDirection.cs" />
+    <Compile Include="Assets\Scripts\Hex\HexDungeon.cs" />
+    <Compile Include="Assets\Scripts\Hex\HexGridExtensions.cs" />
+    <Compile Include="Assets\Scripts\Hex\HexMapEditor.cs" />
+    <Compile Include="Assets\Scripts\Hex\HexMapLabels.cs" />
+    <Compile Include="Assets\Scripts\Hex\HexMapper.cs" />
+    <Compile Include="Assets\Scripts\Hex\HexMesh.cs" />
+    <Compile Include="Assets\Scripts\Hex\HexMetrics.cs" />
+    <Compile Include="Assets\Scripts\Hex\HexOrientation.cs" />
+    <Compile Include="Assets\Scripts\Hex\HexRoom.cs" />
+    <Compile Include="Assets\Scripts\Hex\HexTile.cs" />
+    <Compile Include="Assets\Scripts\Hex\IHexCoordinate.cs" />
+    <Compile Include="Assets\Scripts\Hex\IHexGrid.cs" />
     <Compile Include="Assets\Scripts\Mesh\MeshBuilder.cs" />
   </ItemGroup>
   <ItemGroup>

@@ -1,7 +1,9 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
 
+[Serializable]
 public class HexRoom : MonoBehaviour, IHexGrid<HexTile>
 {
     public delegate void ClickAction();
@@ -18,7 +20,7 @@ public class HexRoom : MonoBehaviour, IHexGrid<HexTile>
     public int Size
     {
         get { return size; }
-        set { size = value; }
+        private set { size = value; }
     }
 
     [SerializeField]
@@ -27,7 +29,7 @@ public class HexRoom : MonoBehaviour, IHexGrid<HexTile>
     public float Scale
     {
         get { return scale; }
-        set { scale = value; }
+        private set { scale = value; }
     }
 
     [SerializeField]
@@ -35,7 +37,7 @@ public class HexRoom : MonoBehaviour, IHexGrid<HexTile>
     public HexOrientation HexOrientation
     {
         get { return hexOrientation; }
-        set { hexOrientation = value; }
+        private set { hexOrientation = value; }
     }
 
     [SerializeField]
@@ -69,33 +71,12 @@ public class HexRoom : MonoBehaviour, IHexGrid<HexTile>
         get
         {
             if (hexMap == null)
+            {
                 hexMap = new Dictionary<IHexCoordinate, HexTile>();
+                hexMap.Populate(Size, () => new HexTile { Color = defaultColor });
+            }
 
             return hexMap;
-        }
-    }
-
-    private void Awake()
-    {
-        BuildMapCells();
-    }
-
-    private void BuildMapCells()
-    {
-        foreach (IHexCoordinate hexCoordinate in HexMapper.HexMap(Size))
-        {
-            HexMap[hexCoordinate] = new HexTile
-            {
-                Color = defaultColor,
-            };
-        }
-    }
-
-    private void OnDrawGizmos()
-    {
-        if (!showGizmos)
-        {
-            return;
         }
     }
 
@@ -113,6 +94,14 @@ public class HexRoom : MonoBehaviour, IHexGrid<HexTile>
         if (CellClicked != null)
         {
             CellClicked.Invoke();
+        }
+    }
+
+    private void OnDrawGizmos()
+    {
+        if (!showGizmos)
+        {
+            return;
         }
     }
 }
