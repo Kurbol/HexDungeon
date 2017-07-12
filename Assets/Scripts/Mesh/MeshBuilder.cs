@@ -5,16 +5,13 @@ using UnityEngine;
 public class MeshBuilder
 {
     private readonly Mesh mesh;
-
     private List<Vector3> Vertices { get; set; }
     private List<int> Triangles { get; set; }
     private List<Color> Colors { get; set; }
 
     public MeshBuilder(string name)
     {
-        mesh = new Mesh();
-        mesh.name = name;
-
+        mesh = new Mesh() { name = name };
         Vertices = new List<Vector3>();
         Triangles = new List<int>();
         Colors = new List<Color>();
@@ -51,6 +48,7 @@ public class MeshBuilder
             mesh.colors = Colors.ToArray();
 
         mesh.RecalculateNormals();
+        mesh.RecalculateBounds();
 
         return mesh;
     }

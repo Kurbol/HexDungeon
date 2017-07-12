@@ -4,16 +4,22 @@ using UnityEngine;
 [Serializable]
 public struct HexCoordinate : IHexCoordinate
 {
-    public int X { get; private set; }
+    [SerializeField]
+    private int x;
+    public int X { get { return x; } }
 
-    public int Y { get; private set; }
+    [SerializeField]
+    private int y;
+    public int Y { get { return y; } }
 
     public int Z { get { return -X - Y; } }
 
+    public HexCoordinate(IHexCoordinate hexCoordinate) : this(hexCoordinate.X, hexCoordinate.Y) { }
+
     public HexCoordinate(int x, int y)
     {
-        X = x;
-        Y = y;
+        this.x = x;
+        this.y = y;
     }
 
     public override string ToString()

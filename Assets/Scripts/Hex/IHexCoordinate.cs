@@ -1,4 +1,6 @@
-﻿public interface IHexCoordinate
+﻿using System;
+
+public interface IHexCoordinate
 {
     int X { get; }
 

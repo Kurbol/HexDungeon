@@ -5,41 +5,50 @@ using UnityEngine;
 [Serializable]
 public struct HexMetrics
 {
-    public HexOrientation Orientation { get; private set; }
+    [SerializeField]
+    private HexOrientation orientation;
+    public HexOrientation Orientation { get { return orientation; } }
 
-    public float InnerRadius { get; private set; }
-    public float OuterRadius { get; private set; }
-    public ReadOnlyCollection<Vector3> Corners { get; private set; }
+    [SerializeField]
+    private float innerRadius;
+    public float InnerRadius { get { return innerRadius; } }
+
+    public float OuterRadius { get { return InnerRadius * 1.15470053838f; /* 2/sqrt(3) */ } }
+
+    public ReadOnlyCollection<Vector3> Corners
+    {
+        get
+        {
+            if (Orientation == HexOrientation.PointUp)
+            {
+                return new ReadOnlyCollection<Vector3>(new[]
+                {
+                    new Vector3(InnerRadius, 0f, 0.5f * OuterRadius),
+                    new Vector3(InnerRadius, 0f, -0.5f * OuterRadius),
+                    new Vector3(0f, 0f, -OuterRadius),
+                    new Vector3(-InnerRadius, 0f, -0.5f * OuterRadius),
+                    new Vector3(-InnerRadius, 0f, 0.5f * OuterRadius),
+                    new Vector3(0f, 0f, OuterRadius),
+                });
+            }
+            else
+            {
+                return new ReadOnlyCollection<Vector3>(new[]
+                {
+                    new Vector3(OuterRadius, 0f, 0f),
+                    new Vector3(0.5f * OuterRadius, 0f, -InnerRadius),
+                    new Vector3(-0.5f * OuterRadius, 0f, -InnerRadius),
+                    new Vector3(-OuterRadius, 0f, 0f),
+                    new Vector3(-0.5f * OuterRadius, 0f, InnerRadius),
+                    new Vector3(0.5f * OuterRadius, 0f, InnerRadius),
+                });
+            }
+        }
+    }
 
     public HexMetrics(float innerRadius, HexOrientation orientation)
     {
-        Orientation = orientation;
-        InnerRadius = innerRadius;
-        OuterRadius = InnerRadius * 1.15470053838f; /* 2/sqrt(3) */
-
-        if (Orientation == HexOrientation.PointUp)
-        {
-            Corners = new ReadOnlyCollection<Vector3>(new[]
-            {
-                new Vector3(InnerRadius, 0f, 0.5f * OuterRadius),
-                new Vector3(InnerRadius, 0f, -0.5f * OuterRadius),
-                new Vector3(0f, 0f, -OuterRadius),
-                new Vector3(-InnerRadius, 0f, -0.5f * OuterRadius),
-                new Vector3(-InnerRadius, 0f, 0.5f * OuterRadius),
-                new Vector3(0f, 0f, OuterRadius),
-            });
-        }
-        else
-        {
-            Corners = new ReadOnlyCollection<Vector3>(new[]
-            {
-                new Vector3(OuterRadius, 0f, 0f),
-                new Vector3(0.5f * OuterRadius, 0f, -InnerRadius),
-                new Vector3(-0.5f * OuterRadius, 0f, -InnerRadius),
-                new Vector3(-OuterRadius, 0f, 0f),
-                new Vector3(-0.5f * OuterRadius, 0f, InnerRadius),
-                new Vector3(0.5f * OuterRadius, 0f, InnerRadius),
-            });
-        }
+        this.orientation = orientation;
+        this.innerRadius = innerRadius;
     }
 }

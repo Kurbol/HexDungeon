@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using UnityEngine;
 
@@ -107,12 +108,12 @@ public static class HexCoordinateExtensions
         }
     }
 
-    public static IHexCoordinate Move(this IHexCoordinate hexCoordinate, HexDirection direction)
+    public static IHexCoordinate Neighbor(this IHexCoordinate hexCoordinate, HexDirection direction)
     {
-        return hexCoordinate.Move(direction, 1);
+        return hexCoordinate.Neighbor(direction, 1);
     }
 
-    public static IHexCoordinate Move(this IHexCoordinate hexCoordinate, HexDirection direction, int distance)
+    public static IHexCoordinate Neighbor(this IHexCoordinate hexCoordinate, HexDirection direction, int distance)
     {
         //       _One_
         //   Six/     \Two
@@ -161,5 +162,13 @@ public static class HexCoordinateExtensions
         }
 
         return new HexCoordinate(x, y);
+    }
+
+    public static IEnumerable<IHexCoordinate> Neighbors(this IHexCoordinate hexCoordinate)
+    {
+        foreach (HexDirection hexDirection in Enum.GetValues(typeof(HexDirection)))
+        {
+            yield return hexCoordinate.Neighbor(hexDirection);
+        }
     }
 }

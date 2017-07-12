@@ -1,7 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using UnityEngine;
 
 public static class HexMapper
 {
@@ -66,46 +64,11 @@ public static class HexMapper
         }
     }
 
-    [Obsolete]
-    private static int MapSize(this IEnumerable<IHexCoordinate> hexMap)
+    public static void Populate<T>(this Dictionary<IHexCoordinate, T> hexMap, int size, Func<IHexCoordinate, T> tileGenerator)
     {
-        if (hexMap == null || !hexMap.Any())
-            return 0;
-
-        int maxSize = 1;
-        foreach (IHexCoordinate c in hexMap)
+        foreach (IHexCoordinate hexCoordinate in HexMap(size))
         {
-            int size = Mathf.Max(Mathf.Abs(c.X), Mathf.Abs(c.Y), Mathf.Abs(c.Z)) + 1;
-            if (size > maxSize)
-                maxSize = size;
+            hexMap[hexCoordinate] = tileGenerator(hexCoordinate);
         }
-
-        return maxSize;
-    }
-
-    [Obsolete]
-    private static Dictionary<IHexCoordinate, T> CreateHexCells<T>(int hexMapSize)
-    {
-        var hexMap = new Dictionary<IHexCoordinate, T>();
-        var hexCoordinate = new HexCoordinate(0, 0);
-        var defaultValue = default(T);
-
-        hexMap[hexCoordinate] = defaultValue;
-        for (int i = 1, x = 0; x < hexMapSize; x++)
-        {
-            for (int y = -hexMapSize + 1; x + y < hexMapSize; y++, i += 2)
-            {
-                if (x == 0 && y >= 0)
-                    break;
-
-                hexCoordinate = new HexCoordinate(x, y);
-                hexMap[hexCoordinate] = defaultValue;
-
-                hexCoordinate = new HexCoordinate(-x, -y);
-                hexMap[hexCoordinate] = defaultValue;
-            }
-        }
-
-        return hexMap;
     }
 }

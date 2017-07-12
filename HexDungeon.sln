@@ -1,7 +1,9 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 2015
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HexDungeon.CSharp", "HexDungeon.CSharp.csproj", "{D546EA35-9197-98BD-78D9-4F81055FD712}"
+# Visual Studio 2017
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HexDungeon", "HexDungeon.csproj", "{6552CDA2-DDBB-3492-FB0A-F28C46392F70}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HexDungeon.Editor", "HexDungeon.Editor.csproj", "{D1949DF4-B707-1722-6B3C-F50249A7C603}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -9,10 +11,14 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{D546EA35-9197-98BD-78D9-4F81055FD712}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{D546EA35-9197-98BD-78D9-4F81055FD712}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{D546EA35-9197-98BD-78D9-4F81055FD712}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{D546EA35-9197-98BD-78D9-4F81055FD712}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6552CDA2-DDBB-3492-FB0A-F28C46392F70}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6552CDA2-DDBB-3492-FB0A-F28C46392F70}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6552CDA2-DDBB-3492-FB0A-F28C46392F70}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6552CDA2-DDBB-3492-FB0A-F28C46392F70}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D1949DF4-B707-1722-6B3C-F50249A7C603}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D1949DF4-B707-1722-6B3C-F50249A7C603}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D1949DF4-B707-1722-6B3C-F50249A7C603}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D1949DF4-B707-1722-6B3C-F50249A7C603}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

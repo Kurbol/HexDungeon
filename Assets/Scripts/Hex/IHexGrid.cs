@@ -1,12 +1,8 @@
 ﻿using System.Collections.Generic;
 
-public interface IHexGrid<T>
+public interface IHexGrid
 {
     int Size { get; }
 
-    float Scale { get; }
-
-    HexMetrics HexMetrics { get; }
-
-    Dictionary<IHexCoordinate, T> HexMap { get; }
+    Dictionary<IHexCoordinate, IHexTile> HexTiles { get; }
 }
