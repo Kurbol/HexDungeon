@@ -17,26 +17,31 @@ public class MeshBuilder
         Colors = new List<Color>();
     }
 
-    public void AddTriangle(Vector3 vertex1, Vector3 vertex2, Vector3 vertex3)
+    public void AddTriangle(Triangle triangle)
     {
         int vertexIndex = Vertices.Count;
 
-        Vertices.Add(vertex1);
-        Vertices.Add(vertex2);
-        Vertices.Add(vertex3);
+        Vertices.Add(triangle.Corner1);
+        Vertices.Add(triangle.Corner2);
+        Vertices.Add(triangle.Corner3);
 
         Triangles.Add(vertexIndex);
         Triangles.Add(vertexIndex + 1);
         Triangles.Add(vertexIndex + 2);
     }
 
-    public void AddTriangle(Vector3 vertex1, Vector3 vertex2, Vector3 vertex3, Color color)
+    public void AddTriangle(Triangle triangle, Color color)
     {
-        AddTriangle(vertex1, vertex2, vertex3);
+        AddTriangle(triangle, color, color, color);
+    }
 
-        Colors.Add(color);
-        Colors.Add(color);
-        Colors.Add(color);
+    public void AddTriangle(Triangle triangle, Color color1, Color color2, Color color3)
+    {
+        AddTriangle(triangle);
+
+        Colors.Add(color1);
+        Colors.Add(color2);
+        Colors.Add(color3);
     }
 
     public Mesh ToMesh()

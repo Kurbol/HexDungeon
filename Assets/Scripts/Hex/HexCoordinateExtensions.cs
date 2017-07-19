@@ -80,12 +80,12 @@ public static class HexCoordinateExtensions
         return new HexCoordinate(x, y);
     }
 
-    public static IEnumerable<ReadOnlyCollection<Vector3>> Triangulate(this IHexCoordinate hexCoordinate, HexMetrics hexMetrics)
+    public static IEnumerable<Triangle> Triangulate(this IHexCoordinate hexCoordinate, HexMetrics hexMetrics)
     {
         return hexCoordinate.Triangulate(hexMetrics, 1);
     }
 
-    public static IEnumerable<ReadOnlyCollection<Vector3>> Triangulate(this IHexCoordinate hexCoordinate, HexMetrics hexMetrics, float scale)
+    public static IEnumerable<Triangle> Triangulate(this IHexCoordinate hexCoordinate, HexMetrics hexMetrics, float scale)
     {
         Vector3 center = hexCoordinate.ToLocalPosition(hexMetrics, scale);
 
@@ -99,12 +99,12 @@ public static class HexCoordinateExtensions
 
         foreach (int[] hexTriangle in hexTriangles)
         {
-            yield return new ReadOnlyCollection<Vector3>(new[]
-            {
+            yield return new Triangle
+            (
                 center + hexMetrics.Corners[hexTriangle[0]],
                 center + hexMetrics.Corners[hexTriangle[1]],
                 center + hexMetrics.Corners[hexTriangle[2]]
-            });
+            );
         }
     }
 

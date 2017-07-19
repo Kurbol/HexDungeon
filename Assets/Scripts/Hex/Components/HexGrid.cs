@@ -2,14 +2,11 @@
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
-using UnityEngine.Events;
 
 [Serializable]
 public class HexGrid : MonoBehaviour, IHexGrid
 {
     private const string TileHolderName = "Tiles";
-
-    public delegate void ClickAction();
 
     [SerializeField]
     private bool showGizmos;
@@ -24,14 +21,6 @@ public class HexGrid : MonoBehaviour, IHexGrid
     {
         get { return size; }
         private set { size = value; }
-    }
-
-    [SerializeField]
-    private UnityEvent cellClicked;
-    public UnityEvent CellClicked
-    {
-        get { return cellClicked; }
-        set { cellClicked = value; }
     }
 
     [SerializeField]

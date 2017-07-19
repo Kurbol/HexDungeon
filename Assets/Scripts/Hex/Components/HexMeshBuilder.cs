@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Collections.ObjectModel;
 using UnityEngine;
 
 [Serializable]
@@ -7,8 +6,8 @@ using UnityEngine;
 public class HexMeshBuilder : MonoBehaviour
 {
     [SerializeField]
-    private HexRoom hexRoom;
-    public HexRoom HexRoom { get { return hexRoom; } set { hexRoom = value; } }
+    private HexGrid hexGrid;
+    public HexGrid HexGrid { get { return hexGrid; } set { hexGrid = value; } }
 
     [SerializeField]
     private MeshFilter meshFilter;
@@ -40,7 +39,7 @@ public class HexMeshBuilder : MonoBehaviour
 
     public void RebuildMesh()
     {
-        Mesh mesh = BuildMesh(hexRoom);
+        Mesh mesh = BuildMesh(hexGrid);
 
         DestroyImmediate(MeshFilter.sharedMesh);
         DestroyImmediate(MeshCollider.sharedMesh);
@@ -49,13 +48,19 @@ public class HexMeshBuilder : MonoBehaviour
         MeshCollider.sharedMesh = mesh;
     }
 
-    private static Mesh BuildMesh(HexRoom hexRoom)
+    private static Mesh BuildMesh(HexGrid hexGrid)
     {
         MeshBuilder meshBuilder = new MeshBuilder("Hex Mesh");
 
-        foreach (HexTile hexTile in hexRoom.HexTiles.Values)
-            foreach (ReadOnlyCollection<Vector3> triangle in hexTile.HexCoordinate.Triangulate(hexTile.HexMetrics))
-                meshBuilder.AddTriangle(triangle[0], triangle[1], triangle[2], hexTile.Color);
+        foreach (HexTile hexTile in hexGrid.HexTiles.Values)
+            foreach (Triangle triangle in hexTile.HexCoordinate.Triangulate(hexTile.HexMetrics))
+            {
+                // ToDo get neighbors to figure our their colors
+                // Blend colors in AddTriangle()
+                // Separate Color logic from triangulation? I guess it's still part of building the mesh though.
+
+                meshBuilder.AddTriangle(triangle, hexTile.Color);
+            }
 
         return meshBuilder.ToMesh();
     }

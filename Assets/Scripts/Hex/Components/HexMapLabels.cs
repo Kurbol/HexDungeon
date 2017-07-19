@@ -12,11 +12,11 @@ public class HexMapLabels : MonoBehaviour
     private Canvas canvas;
 
     [SerializeField]
-    private HexRoom hexRoom;
+    private HexGrid hexGrid;
 
     private void Start()
     {
-        foreach (HexTile hexTile in hexRoom.HexTiles.Values)
+        foreach (HexTile hexTile in hexGrid.HexTiles.Values)
         {
             CreateHexLabel(hexTile);
         }

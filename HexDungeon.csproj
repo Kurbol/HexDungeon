@@ -94,8 +94,10 @@
     <Compile Include="Assets\Scripts\Hex\HexOrientation.cs" />
     <Compile Include="Assets\Scripts\Hex\IHexCoordinate.cs" />
     <Compile Include="Assets\Scripts\Hex\IHexGrid.cs" />
+    <Compile Include="Assets\Scripts\Hex\IHexGridExtensions.cs" />
     <Compile Include="Assets\Scripts\Hex\IHexTile.cs" />
     <Compile Include="Assets\Scripts\Mesh\MeshBuilder.cs" />
+    <Compile Include="Assets\Scripts\Mesh\Triangle.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\Shader\VertexColors.shader" />

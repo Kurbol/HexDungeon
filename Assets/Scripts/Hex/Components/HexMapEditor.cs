@@ -28,20 +28,18 @@ public class HexMapEditor : MonoBehaviour
         RaycastHit hit;
         if (Physics.Raycast(inputRay, out hit))
         {
-            HexGrid hexGrid = hit.transform.GetComponent<HexGrid>();
-            if (hexGrid == null)
+            HexMeshBuilder hexMeshBuilder = hit.transform.GetComponent<HexMeshBuilder>();
+            if (hexMeshBuilder == null)
                 return;
 
-            IHexTile hexTile = hexGrid.GetHexTileFromWorldPosition(hit.point);
+            IHexTile hexTile = hexMeshBuilder.HexGrid.GetHexTileFromWorldPosition(hit.point);
             if (hexTile == null)
                 return;
 
             hexTile.Color = activeColor;
             Debug.Log("touched at " + hexTile.HexCoordinate.ToString());
 
-            // ToDo Somehow signal HexGrid to rebuild HexMesh
-            if (CellClicked != null)
-                CellClicked.Invoke();
+            hexMeshBuilder.RebuildMesh();
         }
     }
 
