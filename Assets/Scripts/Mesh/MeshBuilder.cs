@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class MeshBuilder
 {
+    private readonly Color defaultColor;
     private readonly Mesh mesh;
     private List<Vector3> Vertices { get; set; }
     private List<int> Triangles { get; set; }
@@ -11,10 +12,16 @@ public class MeshBuilder
 
     public MeshBuilder(string name)
     {
+        defaultColor = Color.white;
         mesh = new Mesh() { name = name };
         Vertices = new List<Vector3>();
         Triangles = new List<int>();
         Colors = new List<Color>();
+    }
+
+    public MeshBuilder(string name, Color defaultColor) : this(name)
+    {
+        this.defaultColor = defaultColor;
     }
 
     public void AddTriangle(Triangle triangle)
@@ -28,20 +35,10 @@ public class MeshBuilder
         Triangles.Add(vertexIndex);
         Triangles.Add(vertexIndex + 1);
         Triangles.Add(vertexIndex + 2);
-    }
 
-    public void AddTriangle(Triangle triangle, Color color)
-    {
-        AddTriangle(triangle, color, color, color);
-    }
-
-    public void AddTriangle(Triangle triangle, Color color1, Color color2, Color color3)
-    {
-        AddTriangle(triangle);
-
-        Colors.Add(color1);
-        Colors.Add(color2);
-        Colors.Add(color3);
+        Colors.Add(triangle.Color1);
+        Colors.Add(triangle.Color2);
+        Colors.Add(triangle.Color3);
     }
 
     public Mesh ToMesh()

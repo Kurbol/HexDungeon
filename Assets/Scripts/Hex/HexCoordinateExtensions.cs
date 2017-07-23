@@ -80,13 +80,19 @@ public static class HexCoordinateExtensions
         return new HexCoordinate(x, y);
     }
 
-    public static IEnumerable<Triangle> Triangulate(this IHexCoordinate hexCoordinate, HexMetrics hexMetrics)
+    public static IEnumerable<Triangle> TriangulateInner(this IHexCoordinate hexCoordinate, HexMetrics hexMetrics, Color color, float scale = 1)
     {
-        return hexCoordinate.Triangulate(hexMetrics, 1);
+        return hexCoordinate.Triangulate(hexMetrics, color, color, color, scale, true);
     }
 
-    public static IEnumerable<Triangle> Triangulate(this IHexCoordinate hexCoordinate, HexMetrics hexMetrics, float scale)
+    public static IEnumerable<Triangle> Triangulate(this IHexCoordinate hexCoordinate, HexMetrics hexMetrics, Color color, float scale = 1, bool inner = false)
     {
+        return hexCoordinate.Triangulate(hexMetrics, color, color, color, scale, inner);
+    }
+
+    public static IEnumerable<Triangle> Triangulate(this IHexCoordinate hexCoordinate, HexMetrics hexMetrics, Color color1, Color color2, Color color3, float scale = 1, bool inner = false)
+    {
+        ReadOnlyCollection<Vector3> corners = inner ? hexMetrics.InnerCorners() : hexMetrics.Corners;
         Vector3 center = hexCoordinate.ToLocalPosition(hexMetrics, scale);
 
         var hexTriangles = new int[][]
@@ -101,9 +107,12 @@ public static class HexCoordinateExtensions
         {
             yield return new Triangle
             (
-                center + hexMetrics.Corners[hexTriangle[0]],
-                center + hexMetrics.Corners[hexTriangle[1]],
-                center + hexMetrics.Corners[hexTriangle[2]]
+                center + corners[hexTriangle[0]],
+                center + corners[hexTriangle[1]],
+                center + corners[hexTriangle[2]],
+                color1,
+                color2,
+                color3
             );
         }
     }

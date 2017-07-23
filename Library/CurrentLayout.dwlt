@@ -20,7 +20,7 @@ MonoBehaviour:
   m_ShowMode: 4
   m_Title: 
   m_RootView: {fileID: 2}
-  m_MinSize: {x: 950, y: 763}
+  m_MinSize: {x: 950, y: 613}
   m_MaxSize: {x: 10000, y: 10000}
 --- !u!114 &2
 MonoBehaviour:
@@ -106,10 +106,10 @@ MonoBehaviour:
     y: 30
     width: 1278
     height: 1308
-  m_MinSize: {x: 681, y: 713}
-  m_MaxSize: {x: 14002, y: 18063}
+  m_MinSize: {x: 683, y: 563}
+  m_MaxSize: {x: 12008, y: 12063}
   vertical: 0
-  controlID: 21
+  controlID: 9
 --- !u!114 &6
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -130,10 +130,10 @@ MonoBehaviour:
     y: 0
     width: 908
     height: 1308
-  m_MinSize: {x: 406, y: 713}
-  m_MaxSize: {x: 10002, y: 18063}
+  m_MinSize: {x: 406, y: 563}
+  m_MaxSize: {x: 8006, y: 12063}
   vertical: 1
-  controlID: 22
+  controlID: 10
 --- !u!114 &7
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -157,7 +157,7 @@ MonoBehaviour:
   m_MinSize: {x: 406, y: 442}
   m_MaxSize: {x: 8006, y: 8042}
   vertical: 0
-  controlID: 23
+  controlID: 11
 --- !u!114 &8
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -181,7 +181,7 @@ MonoBehaviour:
   m_MinSize: {x: 202, y: 442}
   m_MaxSize: {x: 4002, y: 8042}
   vertical: 1
-  controlID: 24
+  controlID: 12
 --- !u!114 &9
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -276,14 +276,14 @@ MonoBehaviour:
     y: 948
     width: 908
     height: 360
-  m_MinSize: {x: 232, y: 271}
-  m_MaxSize: {x: 10002, y: 10021}
-  m_ActualView: {fileID: 18}
+  m_MinSize: {x: 100, y: 100}
+  m_MaxSize: {x: 4000, y: 4000}
+  m_ActualView: {fileID: 19}
   m_Panes:
   - {fileID: 18}
   - {fileID: 19}
-  m_Selected: 0
-  m_LastSelected: 1
+  m_Selected: 1
+  m_LastSelected: 0
 --- !u!114 &13
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -302,8 +302,8 @@ MonoBehaviour:
     y: 0
     width: 370
     height: 1308
-  m_MinSize: {x: 275, y: 50}
-  m_MaxSize: {x: 4000, y: 4000}
+  m_MinSize: {x: 277, y: 71}
+  m_MaxSize: {x: 4002, y: 4021}
   m_ActualView: {fileID: 20}
   m_Panes:
   - {fileID: 20}
@@ -417,9 +417,9 @@ MonoBehaviour:
   m_isRotationLocked: 0
   m_AudioPlay: 0
   m_Position:
-    m_Target: {x: -0.4227811, y: -17.8125, z: 1.7859207}
+    m_Target: {x: -0.043645523, y: -3.2421875, z: 1.1926482}
     speed: 2
-    m_Value: {x: -0.4227811, y: -17.8125, z: 1.7859207}
+    m_Value: {x: -0.043645523, y: -3.2421875, z: 1.1926482}
   m_RenderMode: 0
   m_ValidateTrueMetals: 0
   m_SceneViewState:
@@ -442,19 +442,19 @@ MonoBehaviour:
       speed: 2
       m_Value: 0
   m_Rotation:
-    m_Target: {x: 0.7071068, y: 0, z: 0, w: 0.7071068}
+    m_Target: {x: 0.7071034, y: 0.0021201768, z: -0.0021225102, w: 0.70710385}
     speed: 2
-    m_Value: {x: -0.7071068, y: 0, z: -0, w: -0.7071068}
+    m_Value: {x: 0.7071034, y: 0.0021201768, z: -0.00212251, w: 0.7071038}
   m_Size:
-    m_Target: 15.04513
+    m_Target: 15.321917
     speed: 2
-    m_Value: 15.04513
+    m_Value: 15.321917
   m_Ortho:
     m_Target: 1
     speed: 2
     m_Value: 1
-  m_LastSceneViewRotation: {x: -0.08717229, y: 0.89959055, z: -0.21045254, w: -0.3726226}
-  m_LastSceneViewOrtho: 0
+  m_LastSceneViewRotation: {x: 0.7071034, y: 0.0021201768, z: -0.0021225102, w: 0.70710385}
+  m_LastSceneViewOrtho: 1
   m_ReplacementShader: {fileID: 0}
   m_ReplacementString: 
   m_LastLockedObject: {fileID: 0}
@@ -515,21 +515,21 @@ MonoBehaviour:
     scrollPos: {x: 0, y: 0}
     m_SelectedIDs: 
     m_LastClickedID: 0
-    m_ExpandedIDs: 2203ffff7016ffff96e8ffffe4fbffffe6fbffff00000000
+    m_ExpandedIDs: e6fbffff00000000
     m_RenameOverlay:
       m_UserAcceptedRename: 0
-      m_Name: 
-      m_OriginalName: 
+      m_Name: HexRoom_PointUp
+      m_OriginalName: HexRoom_PointUp
       m_EditFieldRect:
         serializedVersion: 2
         x: 0
         y: 0
         width: 0
         height: 0
-      m_UserData: 0
+      m_UserData: -5994
       m_IsWaitingForDelay: 0
       m_IsRenaming: 0
-      m_OriginalEventType: 11
+      m_OriginalEventType: 0
       m_IsRenamingFilename: 0
       m_ClientGUIView: {fileID: 11}
     m_SearchString: 
@@ -575,19 +575,19 @@ MonoBehaviour:
     m_ShowAllHits: 0
     m_SearchArea: 0
     m_Folders:
-    - Assets/Scenes
+    - Assets/Scripts/Hex
   m_ViewMode: 1
   m_StartGridSize: 96
   m_LastFolders:
-  - Assets/Scenes
+  - Assets/Scripts/Hex
   m_LastFoldersGridSize: 96
   m_LastProjectPath: C:\Users\curti\Documents\BitBucket\HexDungeon
   m_IsLocked: 0
   m_FolderTreeState:
     scrollPos: {x: 0, y: 0}
-    m_SelectedIDs: 28250000
-    m_LastClickedID: 9512
-    m_ExpandedIDs: 00000000d8240000442500007025000000ca9a3bffffff7f
+    m_SelectedIDs: 48250000
+    m_LastClickedID: 9544
+    m_ExpandedIDs: 00000000dc240000482500007425000000ca9a3bffffff7f
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
@@ -615,7 +615,7 @@ MonoBehaviour:
     scrollPos: {x: 0, y: 0}
     m_SelectedIDs: 
     m_LastClickedID: 0
-    m_ExpandedIDs: 00000000d82400004425000070250000
+    m_ExpandedIDs: 00000000dc2400004825000074250000
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
@@ -640,9 +640,9 @@ MonoBehaviour:
       m_Icon: {fileID: 0}
       m_ResourceFile: 
   m_ListAreaState:
-    m_SelectedInstanceIDs: 
-    m_LastClickedInstanceID: 0
-    m_HadKeyboardFocusLastEvent: 0
+    m_SelectedInstanceIDs: 56e1ffff
+    m_LastClickedInstanceID: -7850
+    m_HadKeyboardFocusLastEvent: 1
     m_ExpandedInstanceIDs: 00000000ac240000b0f379ffca17ffff
     m_RenameOverlay:
       m_UserAcceptedRename: 0

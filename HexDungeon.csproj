@@ -88,14 +88,17 @@
     <Compile Include="Assets\Scripts\Hex\HexCoordinate.cs" />
     <Compile Include="Assets\Scripts\Hex\HexCoordinateExtensions.cs" />
     <Compile Include="Assets\Scripts\Hex\HexDirection.cs" />
+    <Compile Include="Assets\Scripts\Hex\HexDirectionExtensions.cs" />
     <Compile Include="Assets\Scripts\Hex\HexGridExtensions.cs" />
     <Compile Include="Assets\Scripts\Hex\HexMapper.cs" />
     <Compile Include="Assets\Scripts\Hex\HexMetrics.cs" />
+    <Compile Include="Assets\Scripts\Hex\HexMetricsExtensions.cs" />
     <Compile Include="Assets\Scripts\Hex\HexOrientation.cs" />
     <Compile Include="Assets\Scripts\Hex\IHexCoordinate.cs" />
     <Compile Include="Assets\Scripts\Hex\IHexGrid.cs" />
     <Compile Include="Assets\Scripts\Hex\IHexGridExtensions.cs" />
     <Compile Include="Assets\Scripts\Hex\IHexTile.cs" />
+    <Compile Include="Assets\Scripts\Hex\IHexTileExtensions.cs" />
     <Compile Include="Assets\Scripts\Mesh\MeshBuilder.cs" />
     <Compile Include="Assets\Scripts\Mesh\Triangle.cs" />
   </ItemGroup>

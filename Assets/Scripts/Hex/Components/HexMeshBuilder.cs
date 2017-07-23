@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using UnityEngine;
 
 [Serializable]
@@ -53,14 +54,20 @@ public class HexMeshBuilder : MonoBehaviour
         MeshBuilder meshBuilder = new MeshBuilder("Hex Mesh");
 
         foreach (HexTile hexTile in hexGrid.HexTiles.Values)
-            foreach (Triangle triangle in hexTile.HexCoordinate.Triangulate(hexTile.HexMetrics))
+        {
+            IDictionary<IHexCoordinate, IHexTile> neighbors = hexGrid.HexTiles.Neighbors(hexTile.HexCoordinate);
+            var triangulateSections = new List<IEnumerable<Triangle>>
             {
-                // ToDo get neighbors to figure our their colors
-                // Blend colors in AddTriangle()
-                // Separate Color logic from triangulation? I guess it's still part of building the mesh though.
+                hexTile.HexCoordinate.TriangulateInner(hexTile.HexMetrics, hexTile.Color),
+                neighbors.TriangulateBridge(hexTile, HexDirection.One),
+                neighbors.TriangulateBridge(hexTile, HexDirection.Two),
+                neighbors.TriangulateBridge(hexTile, HexDirection.Three),
+            };
 
-                meshBuilder.AddTriangle(triangle, hexTile.Color);
-            }
+            foreach (IEnumerable<Triangle> triangulateSection in triangulateSections)
+                foreach (Triangle triangle in triangulateSection)
+                    meshBuilder.AddTriangle(triangle);
+        }
 
         return meshBuilder.ToMesh();
     }

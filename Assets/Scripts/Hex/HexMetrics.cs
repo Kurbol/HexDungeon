@@ -6,6 +6,11 @@ using UnityEngine;
 public struct HexMetrics
 {
     [SerializeField]
+    private float blendFactor;
+    public float BlendFactor { get { return blendFactor; } }
+    public float SolidFactor { get { return 1f - blendFactor; } }
+
+    [SerializeField]
     private HexOrientation orientation;
     public HexOrientation Orientation { get { return orientation; } }
 
@@ -23,32 +28,33 @@ public struct HexMetrics
             {
                 return new ReadOnlyCollection<Vector3>(new[]
                 {
+                    new Vector3(0f, 0f, OuterRadius),
                     new Vector3(InnerRadius, 0f, 0.5f * OuterRadius),
                     new Vector3(InnerRadius, 0f, -0.5f * OuterRadius),
                     new Vector3(0f, 0f, -OuterRadius),
                     new Vector3(-InnerRadius, 0f, -0.5f * OuterRadius),
                     new Vector3(-InnerRadius, 0f, 0.5f * OuterRadius),
-                    new Vector3(0f, 0f, OuterRadius),
                 });
             }
             else
             {
                 return new ReadOnlyCollection<Vector3>(new[]
                 {
+                    new Vector3(-0.5f * OuterRadius, 0f, InnerRadius),
+                    new Vector3(0.5f * OuterRadius, 0f, InnerRadius),
                     new Vector3(OuterRadius, 0f, 0f),
                     new Vector3(0.5f * OuterRadius, 0f, -InnerRadius),
                     new Vector3(-0.5f * OuterRadius, 0f, -InnerRadius),
                     new Vector3(-OuterRadius, 0f, 0f),
-                    new Vector3(-0.5f * OuterRadius, 0f, InnerRadius),
-                    new Vector3(0.5f * OuterRadius, 0f, InnerRadius),
                 });
             }
         }
     }
 
-    public HexMetrics(float innerRadius, HexOrientation orientation)
+    public HexMetrics(float innerRadius, float blendFactor, HexOrientation orientation)
     {
         this.orientation = orientation;
         this.innerRadius = innerRadius;
+        this.blendFactor = blendFactor;
     }
 }
